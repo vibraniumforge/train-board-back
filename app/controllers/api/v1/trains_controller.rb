@@ -4,12 +4,8 @@ module Api::V1
     before_action :find_train, only: [:show, :edit, :update, :destroy]
 
     def index
-      @trains = Train.all
-      render json: { message: "Trains successfully returned.", success: true, data: @trains }, status: 200
-      # doesnt work
-      # render json: { message: "Trains successfully returned.", success: true, data: @trains, only: [:destination, :origin, :remarks_boarding, :service, :trainno, :scheduled, :scheduled24, :newtime, :newtime24] }, status: 200
-      # works
-      # render json: @trains, only: [:destination, :origin, :remarks_boarding, :service, :trainno, :scheduled, :scheduled24, :newtime, :newtime24]
+      trains = Train.all
+      render json: { message: "Trains successfully returned.", success: true, data: trains, only: [:destination, :origin, :remarks_boarding, :service, :trainno, :scheduled, :scheduled24, :newtime, :newtime24] }, status: 200
     end
 
     def show
