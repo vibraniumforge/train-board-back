@@ -2,7 +2,7 @@ Train.destroy_all
 
 trains = Train.create([
     {destination: "Paris - Gare du Nord", newtime:"0115", newtime24:"1315", origin: "London - St. Pancras", remarks_boarding: "L 15M", scheduled: "0100", scheduled24: "1300", service: "Eurostar", trainno: "1"},
-    {destination: "Brussels - Gare du Midi", newtime:"", newtime24:"", origin: "Paris - Gare du Nord", remarks_boarding: "On Time", scheduled: "0200", scheduled24: "1400", service: "Thalys", trainno: "3"},
+    {destination: "Brussels - Gare du Midi", newtime:"", newtime24:"", origin: "Paris - Gare du Nord", remarks_boarding: "Boarding", scheduled: "0200", scheduled24: "1400", service: "Thalys", trainno: "3"},
     {destination: "Marseilles - St. Charles", newtime:"", newtime24:"", origin: "Paris - Gare de Lyon", remarks_boarding: "On Time", scheduled: "0300", scheduled24: "1500", service: "TGV", trainno: "5"},
     {destination: "Chicago Union Station", newtime:"", newtime24:"", origin: "Emeryville", remarks_boarding: "On Time", scheduled: "0330", scheduled24: "1530", service: "California Zephyr", trainno: "6"},
     {destination: "Istanbul - Sirkeci", newtime:"", newtime24:"", origin: "Paris - Gare de l' Est", remarks_boarding: "On Time", scheduled: "0400", scheduled24: "1600", service: "Orient Express", trainno: "7"},
