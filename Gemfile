@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+# new gems
 gem 'faraday'
 gem 'active_model_serializers'
 gem 'dotenv-rails'

@@ -4,9 +4,8 @@ module Api::V1
     before_action :find_train, only: [:show, :edit, :update, :destroy]
 
     def index
-      @trains = Train.all.as_json(except: [:created_at, :updated_at])
-      render json: {message: "Trains successfully returned.", success: true, data: @trains}, status: 200
-      
+      trains = Train.all
+      render json: { message: "Trains successfully returned.", success: true, data: trains }, status: 200
     end
 
     def show
@@ -15,7 +14,7 @@ module Api::V1
         render json: { message: "Train NOT found.", success: false, data: @train.errors.full_messages }, status: 406
       else
         puts "success"
-        render json: { message: "Train successfully returned.", success: true, data: @train.as_json(except: [:created_at, :updated_at]) }, status: 200
+        render json: { message: "Train successfully returned.", success: true, data: @train }, status: 200
       end
     end
 
@@ -26,11 +25,11 @@ module Api::V1
       @train = Train.new(train_params)
       if @train.save && @train.valid?
         puts "=> train saved"
-        render json: { message: "Train successfully saved.", success: true, data: @train.as_json(except: [:created_at, :updated_at]) }, status: 200
+        render json: { message: "Train successfully saved.", success: true, data: @train }, status: 200
       else
-        puts "\nTrain not saved"
-        puts "Errors= #{@train.errors.full_messages.join(", ")}\n "
-        render json: { message: "Train NOT saved because: #{@train.errors.full_messages.join(", ")}", success: false, data: @train.errors.full_messages }, status: 406
+        puts "Train not saved"
+        puts "Errors= #{@train.errors.full_messages.join(", ")}"
+        render json: { message: "Train NOT saved because #{@train.errors.full_messages.join(", ")}", success: false, data: @train.errors.full_messages }, status: 406
       end
     end
         
@@ -44,11 +43,11 @@ module Api::V1
       end
       if @train.update(train_params) && @train.valid?
         puts "Train updated"
-        render json: { message: "Train successfully saved.", success: true, data: @train.as_json(except: [:created_at, :updated_at]) }, status: 200
+        render json: { message: "Train successfully saved.", success: true, data: @train }, status: 200
       else
+        puts "Train not saved"
         render json: { message: "Train NOT updated because #{@train.errors.full_messages.join(", ")}", success: false, data: @train.errors.full_messages }, status: 406
-        puts "Train not updated"
-        puts "\nErrors= #{@train.errors.full_messages.join(", ")}\n "
+        puts "Errors= #{@train.errors.full_messages.join(", ")}"
       end
     end
     
@@ -57,7 +56,7 @@ module Api::V1
         render json: { message: "Train successfully deleted.", success: true, data: @train }, status: 200
       else
         render json: { message: "Train NOT successfully deleted.", success:false, data: @train.errors.full_messages.join(", ") }, status: 406
-        puts "\n Error in delete: #{@train.errors.full_messages.join(", ")}\n "
+        puts "Error in delete: #{@train.errors.full_messages.join(", ")}"
       end
     end
 
